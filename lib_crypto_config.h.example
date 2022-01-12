@@ -1,0 +1,19 @@
+/*!
+	@file   lib_crypto_config.h
+	@brief  <brief description here>
+	@t.odo	-
+*/
+
+/******************************************************************************
+* Preprocessor Definitions & Macros
+******************************************************************************/
+
+#define LIB_CRYPTO_ENABLE_CRC
+#define LIB_CRYPTO_ENABLE_AES
+#define LIB_CRYPTO_ENABLE_SHA
+
+
+/******************************************************************************
+* EOF - NO CODE AFTER THIS LINE
+******************************************************************************/
+
