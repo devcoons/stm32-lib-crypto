@@ -42,53 +42,51 @@
 
 #if __has_include("../lib_crypto_config.h")
 	#include "../lib_crypto_config.h"
+	#define LIB_CRYPTO_ENABLED
 #else
-	#error "Missing: `lib_crypto_config.h` file in the parent folder. Please use the example"
+	#warning "Missing: `lib_crypto_config.h` file in the parent folder. Please use the example"
 #endif
 
-#ifdef LIB_CRYPTO_ENABLE_CRC
-	#if __has_include("crc/lib_crc16_ibm.h")
-		#include "crc/lib_crc16_ibm.h"
+#ifdef LIB_CRYPTO_ENABLED
+	#ifdef LIB_CRYPTO_ENABLE_CRC
+		#if __has_include("crc/lib_crc16_ibm.h")
+			#include "crc/lib_crc16_ibm.h"
+		#endif
+		#if __has_include("crc/lib_crc16_ccitt.h")
+			#include "crc/lib_crc16_ccitt.h"
+		#endif
 	#endif
-	#if __has_include("crc/lib_crc16_ccitt.h")
-		#include "crc/lib_crc16_ccitt.h"
+	#ifdef LIB_CRYPTO_ENABLE_AES
+		#if __has_include("aes/lib_aes.h")
+			#include "aes/lib_aes.h"
+		#endif
 	#endif
-#endif
-
-#ifdef LIB_CRYPTO_ENABLE_AES
-	#if __has_include("aes/lib_aes.h")
-		#include "aes/lib_aes.h"
+	#ifdef LIB_CRYPTO_ENABLE_HASH
+		#include "hash/sha2.h"
+		#include "hash/sha3.h"
+		#include "hash/blake2b.h"
+		#include "hash/blake256.h"
+		#include "hash/hasher.h"
+		#include "hash/hmac.h"
+		#include "hash/groestl.h"
 	#endif
-#endif
-
-#ifdef LIB_CRYPTO_ENABLE_HASH
-	#include "hash/sha2.h"
-	#include "hash/sha3.h"
-	#include "hash/blake2b.h"
-	#include "hash/blake256.h"
-	#include "hash/hasher.h"
-	#include "hash/hmac.h"
-	#include "hash/groestl.h"
-#endif
-
-#ifdef LIB_CRYPTO_ENABLE_ECC
-	#include "ecc/ecdsa.h"
-	#include "ecc/curves.h"
-	#include "ecc/secp256k1.h"
-#endif
-
-#ifdef LIB_CRYPTO_ENABLE_ENC
-	#include "enc/base58.h"
-#endif
-
-#ifdef LIB_CRYPTO_ENABLE_BLOCKCHAIN
-	#include "extra/address.h"
-	#include "extra/rfc6979.h"
-	#include "extra/rand.h"
-#endif
-
-#ifdef LIB_CRYPTO_ENABLE_RANDOM
-	#include "extra/rand.h"
+	#ifdef LIB_CRYPTO_ENABLE_ECC
+		#include "ecc/ecdsa.h"
+		#include "ecc/curves.h"
+		#include "ecc/secp256k1.h"
+	#endif
+	#ifdef LIB_CRYPTO_ENABLE_ENC
+		#include "enc/base58.h"
+		#include "enc/base64.h"
+	#endif
+	#ifdef LIB_CRYPTO_ENABLE_BLOCKCHAIN
+		#include "extra/address.h"
+		#include "extra/rfc6979.h"
+		#include "extra/rand.h"
+	#endif
+	#ifdef LIB_CRYPTO_ENABLE_RANDOM
+		#include "extra/rand.h"
+	#endif
 #endif
 
 /******************************************************************************
