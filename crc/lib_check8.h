@@ -36,7 +36,9 @@
 * Includes
 ******************************************************************************/
 
+#include <stdlib.h>
 #include <inttypes.h>
+#include <string.h>
 
 /******************************************************************************
 * Enumerations, structures & Variables
