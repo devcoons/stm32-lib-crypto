@@ -1,11 +1,11 @@
 /*!
-	@file   lib_crypto.h
+	@file   lib_check8.h
 	@brief  <brief description here>
 	@t.odo	-
 	---------------------------------------------------------------------------
 
 	MIT License
-	Copyright (c) 2019 Io. D (Devcoons)
+	Copyright (c) 2017 Io. D (Devcoons)
 
 	Permission is hereby granted, free of charge, to any person obtaining a copy
 	of this software and associated documentation files (the "Software"), to deal
@@ -29,69 +29,14 @@
 * Preprocessor Definitions & Macros
 ******************************************************************************/
 
-#ifndef LIB_CRYPTO_H_
-#define LIB_CRYPTO_H_
+#ifndef LIB_CHECK8_H_
+#define LIB_CHECK8_H_
 
 /******************************************************************************
 * Includes
 ******************************************************************************/
 
 #include <inttypes.h>
-#include <stdbool.h>
-#include <string.h>
-
-#if __has_include("../lib_crypto_config.h")
-	#include "../lib_crypto_config.h"
-	#define LIB_CRYPTO_ENABLED
-#else
-	#warning "Missing: `lib_crypto_config.h` file in the parent folder. Please use the example"
-#endif
-
-#ifdef LIB_CRYPTO_ENABLED
-	#ifdef LIB_CRYPTO_ENABLE_CRC
-		#if __has_include("crc/lib_crc16_ibm.h")
-			#include "crc/lib_crc16_ibm.h"
-		#endif
-		#if __has_include("crc/lib_crc16_ccitt.h")
-			#include "crc/lib_crc16_ccitt.h"
-		#endif
-		#if __has_include("crc/lib_check8.h")
-			#include "crc/lib_check8.h"
-		#endif
-	#endif
-
-	#ifdef LIB_CRYPTO_ENABLE_AES
-		#if __has_include("aes/lib_aes.h")
-			#include "aes/lib_aes.h"
-		#endif
-	#endif
-	#ifdef LIB_CRYPTO_ENABLE_HASH
-		#include "hash/sha2.h"
-		#include "hash/sha3.h"
-		#include "hash/blake2b.h"
-		#include "hash/blake256.h"
-		#include "hash/hasher.h"
-		#include "hash/hmac.h"
-		#include "hash/groestl.h"
-	#endif
-	#ifdef LIB_CRYPTO_ENABLE_ECC
-		#include "ecc/ecdsa.h"
-		#include "ecc/curves.h"
-		#include "ecc/secp256k1.h"
-	#endif
-	#ifdef LIB_CRYPTO_ENABLE_ENC
-		#include "enc/base58.h"
-		#include "enc/base64.h"
-	#endif
-	#ifdef LIB_CRYPTO_ENABLE_BLOCKCHAIN
-		#include "extra/address.h"
-		#include "extra/rfc6979.h"
-		#include "extra/rand.h"
-	#endif
-	#ifdef LIB_CRYPTO_ENABLE_RANDOM
-		#include "extra/rand.h"
-	#endif
-#endif
 
 /******************************************************************************
 * Enumerations, structures & Variables
@@ -100,6 +45,8 @@
 /******************************************************************************
 * Declaration | Public Functions
 ******************************************************************************/
+
+uint8_t checksum_8(const void* vptr, size_t len);
 
 /******************************************************************************
 * EOF - NO CODE AFTER THIS LINE
