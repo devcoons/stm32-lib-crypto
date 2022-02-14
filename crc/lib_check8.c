@@ -64,6 +64,12 @@ uint8_t checksum_8(const void* vptr, size_t len)
                 sum = (i+j+sum+1) & 0x00ff;
         }
     }
+
+    while((uint8_t)(sum & 0x00ff) == 0)
+    {
+    	sum += (((1 + len) * 3) & 0x00ff) ;
+    }
+
     return (uint8_t)(sum & 0x00ff);
 }
 
