@@ -66,6 +66,7 @@
 		#endif
 	#endif
 	#ifdef LIB_CRYPTO_ENABLE_HASH
+		#include "hash/hash.h"
 		#include "hash/sha2.h"
 		#include "hash/sha3.h"
 		#include "hash/blake2b.h"
