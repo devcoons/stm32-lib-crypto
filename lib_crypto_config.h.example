@@ -13,6 +13,7 @@
 // #define LIB_CRYPTO_ENABLE_SHA
 // #define LIB_CRYPTO_ENABLE_ENC
 // #define LIB_CRYPTO_ENABLE_HASH
+// #define LIB_CRYPTO_ENABLE_RANDOM
 
 /******************************************************************************
 * EOF - NO CODE AFTER THIS LINE

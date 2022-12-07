@@ -53,13 +53,31 @@
 //
 // The following code is platform independent
 //
-static uint32_t seed = 3;
-void random_reseed(const uint32_t value) { seed = value; }
-uint32_t random32(void) {
 
-    return seed * 123;
+#if __has_include("rng.h")
+	#include "rng.h"
+	#define USE_STM_RND
+#else
+	#warning "The random value is not pure."
+#endif
+
+static uint32_t seed = 3;
+
+void random_reseed(const uint32_t value) { seed = value; }
+
+uint32_t random32(void)
+{
+	#ifdef USE_STM_RND
+		static uint32_t res = 0;
+		HAL_RNG_GenerateRandomNumber(&hrng, &res);
+		return res;
+	#else
+		return seed * 123;
+	#endif
 }
-void  random_buffer(uint8_t *buf, size_t len) {
+
+void  random_buffer(uint8_t *buf, size_t len)
+{
   uint32_t r = 0;
   for (size_t i = 0; i < len; i++) {
     if (i % 4 == 0) {
